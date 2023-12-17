@@ -1,10 +1,24 @@
-'''things to remember 
-- take user input json and store in seearch_params that will be 
-used as params for google and yelp search in app
-- must also get data that user wants returned 
-- determine if the user is on a basic or premium plan to dictate the data
-they will get returned
-- (search params are things like location type and radius)
-- (returned data are things like business name, phone number, etc)
-- clean all data to ensure that google and yelp will recognize
-'''
+from flask import Flask, request, jsonify
+
+
+
+app = Flask(__name__)
+
+@app.route('/search', methods=['POST'])
+def search_businesses():
+    data = request.json
+    search_params_data = data.get('search_params', {}) 
+    search_params = {
+        'location': search_params_data.get('location'),
+        'yelp_type': search_params_data.get('yelp_type'),
+        'radius': search_params_data.get('radius'),
+        'google_type': search_params_data.get('google_type')
+    }
+
+    return_fields = data.get('return_fields', [])
+
+    return jsonify(search_params, return_fields)
+
+
+if __name__ == '__main__':
+    app.run(debug=True, host ='0.0.0.0', port=5001)  # Use debug=False for production

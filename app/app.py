@@ -112,9 +112,7 @@ def create_business_df(businesses_list):
     else:
         print("business list is empty")
         return None
-
     
-
 # ---- LEAD FILTERING FUNCTION ----
 # Function to filter leads based on specific criteria
 def filter_leads(business_df, ratings_threshold=4.0):
