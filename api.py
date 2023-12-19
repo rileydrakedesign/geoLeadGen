@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from app.app import fetch_yelp_data, process_yelp_data, search_google_places, extract_google_details, create_business_df, businesses
 
 
 
@@ -17,7 +18,17 @@ def search_businesses():
 
     return_fields = data.get('return_fields', [])
 
-    return jsonify(search_params, return_fields)
+
+
+    yelp_data = fetch_yelp_data(search_params)
+    yelp_processed = process_yelp_data(yelp_data, return_fields)
+    google_place_ids = search_google_places(search_params)
+    google_business_details = extract_google_details(google_place_ids, return_fields)
+
+    business_df = (create_business_df(businesses))
+
+    return business_df.to_json(orient='records')
+
 
 
 if __name__ == '__main__':

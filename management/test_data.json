@@ -5,5 +5,5 @@
         "google_type": "real_estate_agency",
         "radius": 20000
     },
-    "return_fields": ["name", "phone"]
+    "return_fields": ["name"]
 }
