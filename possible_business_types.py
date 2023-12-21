@@ -1,5 +1,5 @@
 
-possible_return_fields = {
+business_types = {
     
     'Accountants': {'yelp': 'accountants', 'google': 'accounting'},
     'Airports': {'yelp': 'airports', 'google': 'airport'},

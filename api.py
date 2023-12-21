@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from app.app import fetch_yelp_data, process_yelp_data, search_google_places, extract_google_details, create_business_df, businesses
-
+from possible_business_types import business_types
 
 
 app = Flask(__name__)
@@ -17,6 +17,19 @@ def search_businesses():
     }
 
     return_fields = data.get('return_fields', [])
+
+    google_types = []
+    yelp_types = []
+
+
+    descriptors = data.get('descriptors', [])
+
+    for descriptor in descriptors:
+        if descriptor in business_types:
+            # Append corresponding Yelp and Google types to their respective lists
+            yelp_types.append(business_types[descriptor]['yelp'])
+            google_types.append(business_types[descriptor]['google'])
+
 
 
 
