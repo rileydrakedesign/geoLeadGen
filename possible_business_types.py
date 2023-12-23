@@ -56,7 +56,7 @@ business_types = {
     'Roofing': {'yelp': 'roofing', 'google': 'roofing_contractor'},
     'Shoes': {'yelp': 'shoes', 'google': 'shoe_store'},
     'Shopping': {'yelp': 'shopping', 'google': 'shopping_mall'},
-     'Spas': {'yelp': 'spas', 'google': 'spa'},
+    'Spas': {'yelp': 'spas', 'google': 'spa'},
     'Storage': {'yelp': 'selfstorage', 'google': 'storage'},
     'Grocery Stores': {'yelp': 'grocery', 'google': 'supermarket'},
     'Hotels and Travel': {'yelp': 'hotelstravel', 'google': 'travel_agency'},

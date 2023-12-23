@@ -5,32 +5,33 @@ from possible_business_types import business_types
 
 app = Flask(__name__)
 
+def map_business_types(user_selected_type):
+    if user_selected_type in business_types:
+        yelp_type = business_types[user_selected_type]['yelp']
+        google_type = business_types[user_selected_type]['google']
+    else:
+        # Handle unknown types, maybe default or error
+        yelp_type = None
+        google_type = None
+    return yelp_type, google_type
+
 @app.route('/search', methods=['POST'])
 def search_businesses():
     data = request.json
-    search_params_data = data.get('search_params', {}) 
-    search_params = {
-        'location': search_params_data.get('location'),
-        'yelp_type': search_params_data.get('yelp_type'),
-        'radius': search_params_data.get('radius'),
-        'google_type': search_params_data.get('google_type')
-    }
 
+
+    user_selected_type = data.get('business_type', '')
+    search_params = data.get('search_params', {}) 
     return_fields = data.get('return_fields', [])
 
-    google_types = []
-    yelp_types = []
+    yelp_type, google_type = map_business_types(user_selected_type)
 
-
-    descriptors = data.get('descriptors', [])
-
-    for descriptor in descriptors:
-        if descriptor in business_types:
-            # Append corresponding Yelp and Google types to their respective lists
-            yelp_types.append(business_types[descriptor]['yelp'])
-            google_types.append(business_types[descriptor]['google'])
-
-
+    if yelp_type and google_type:
+        search_params['yelp_type'] = yelp_type
+        search_params['google_type'] = google_type
+    else:
+        # Handle error or unknown type
+        return jsonify({'error': 'Invalid business type'}), 400
 
 
     yelp_data = fetch_yelp_data(search_params)

@@ -1,9 +1,8 @@
 {
     "search_params": {
         "location": "34.052235,-118.243683",
-        "yelp_type": "real estate",
-        "google_type": "real_estate_agency",
         "radius": 20000
     },
-    "return_fields": ["name"]
+    "return_fields": ["name"],
+    "business_type": "Physical Therapy"
 }
