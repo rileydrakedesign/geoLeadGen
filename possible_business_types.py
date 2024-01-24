@@ -64,3 +64,21 @@ business_types = {
     'Zoos': {'yelp': 'zoos', 'google': 'zoo'}
 
 }
+
+
+business_details = {
+    
+    "Name": "name",
+    "Phone Number": "formatted_phone_number",
+    "Address": "formatted_address",
+    "Opening Hours": "opening_hours",
+    "Price Level": "price_level",
+    "Rating": "rating",
+    "Reviews": "reviews",
+    "Supports Delivery": "delivery",
+    "Total Reviews": "user_ratings_total",
+    "Website": "website"
+}
+
+
+
